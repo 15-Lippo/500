@@ -8,7 +8,7 @@ import App from './App';
 import '@solana/wallet-adapter-react-ui/styles.css';
 
 function WalletWrapper() {
-    const network = WalletAdapterNetwork.Devnet; // Usa 'Devnet' per test
+    const network = WalletAdapterNetwork.Devnet;
     const endpoint = useMemo(() => clusterApiUrl(network), [network]);
 
     const wallets = useMemo(
