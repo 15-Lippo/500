@@ -1,25 +1,13 @@
-# 500 Immagini
+# 500 Crypto App
 
-Questo è un semplice progetto web per visualizzare una sequenza di immagini e un contatore.
+Un'applicazione React per investire in 500 Crypto, con integrazione di Solana Wallet e una galleria di immagini.
 
 ## Come Utilizzare
 
-1.  Apri il file `index.html` in un browser.
-2.  Clicca su "Prossima" per passare all'immagine successiva.
-3.  Clicca su "Start" per avviare l'autoplay delle immagini, e su "Stop" per interromperlo.
-
-## Struttura del Progetto
-
-*   `index.html`: Il file HTML principale.
-*   `style.css`: Il file CSS per gli stili.
-*   `script.js`: Il file JavaScript per la logica.
-*   `img/`: La cartella contenente le immagini.
-
-## Miglioramenti Futuri
-
-*   Implementare una logica per il caricamento dinamico delle immagini dalla cartella `img`.
-*   Aggiungere ulteriori funzionalità come la possibilità di caricare immagini tramite drag and drop.
-*   Migliorare l'accessibilità con ARIA roles.
+1. Clona il repository.
+2. Esegui `npm install` per installare le dipendenze.
+3. Esegui `npm start` per avviare l'applicazione in modalità sviluppo.
+4. Connetti il tuo wallet Solana e inizia a investire!
 
 ## Autore
 
