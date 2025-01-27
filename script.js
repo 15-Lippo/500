@@ -1,54 +1,58 @@
 <script>
-    // Collegamento al wallet Web3 (MetaMask)
+    // Collegamento al wallet Phantom
     async function connectWallet() {
-        if (typeof window.ethereum !== 'undefined') {
+        if (window.solana && window.solana.isPhantom) {
             try {
                 // Richiedi l'accesso al wallet
-                const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-                const walletAddress = accounts[0];
-                alert(`Wallet connesso: ${walletAddress}`);
-                return walletAddress;
+                const response = await window.solana.connect();
+                const publicKey = response.publicKey.toString();
+                document.getElementById('statusMessage').textContent = `Wallet connesso: ${publicKey}`;
+                return publicKey;
             } catch (error) {
                 console.error("Errore durante la connessione al wallet:", error);
-                alert("Errore durante la connessione al wallet.");
+                document.getElementById('statusMessage').textContent = "Errore durante la connessione al wallet.";
             }
         } else {
-            alert("MetaMask non è installato. Per favore, installa MetaMask per continuare.");
+            alert("Phantom Wallet non è installato. Per favore, installa Phantom Wallet per continuare.");
         }
     }
 
     // Funzione per acquistare la crypto "500"
     async function buyCrypto500() {
-        const walletAddress = await connectWallet();
-        if (!walletAddress) return;
+        const publicKey = await connectWallet();
+        if (!publicKey) return;
 
-        // Configurazione della transazione
-        const transactionParameters = {
-            to: '0xYourContractAddressHere', // Indirizzo del contratto della crypto "500"
-            from: walletAddress,
-            value: '0x' + (0.1 * 1e18).toString(16), // 0.1 ETH (cambia il valore in base al prezzo)
-            gas: '0x5208', // 21000 Gwei
-            gasPrice: '0x3b9aca00', // 1 Gwei
-        };
+        // Configurazione della connessione a Solana
+        const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'), 'confirmed');
 
-        // Invio della transazione
+        // Indirizzo del destinatario (sostituisci con l'indirizzo del tuo wallet o contratto)
+        const recipientPublicKey = new solanaWeb3.PublicKey('YourRecipientPublicKeyHere');
+
+        // Quantità di SOL da inviare (es. 0.1 SOL)
+        const lamports = solanaWeb3.LAMPORTS_PER_SOL * 0.1;
+
+        // Creazione della transazione
+        const transaction = new solanaWeb3.Transaction().add(
+            solanaWeb3.SystemProgram.transfer({
+                fromPubkey: new solanaWeb3.PublicKey(publicKey),
+                toPubkey: recipientPublicKey,
+                lamports,
+            })
+        );
+
+        // Firma e invio della transazione
         try {
-            const txHash = await ethereum.request({
-                method: 'eth_sendTransaction',
-                params: [transactionParameters],
-            });
-            alert(`Transazione inviata! Hash: ${txHash}`);
+            const { signature } = await window.solana.signAndSendTransaction(transaction);
+            document.getElementById('statusMessage').textContent = `Transazione inviata! Signature: ${signature}`;
         } catch (error) {
             console.error("Errore durante l'invio della transazione:", error);
-            alert("Errore durante l'invio della transazione.");
+            document.getElementById('statusMessage').textContent = "Errore durante l'invio della transazione.";
         }
     }
 
-    // Collega il pulsante "Acquista Ora" alla funzione buyCrypto500
+    // Collega il pulsante "Acquista 500 Crypto" alla funzione buyCrypto500
     document.addEventListener('DOMContentLoaded', () => {
-        const buyButtons = document.querySelectorAll('.cta-button');
-        buyButtons.forEach(button => {
-            button.addEventListener('click', buyCrypto500);
-        });
+        const buyButton = document.getElementById('buyButton');
+        buyButton.addEventListener('click', buyCrypto500);
     });
 </script>
