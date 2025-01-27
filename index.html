@@ -1,113 +1,129 @@
-<header>
-    <img src="src/logo.png" alt="Fiat 500 Token Logo" id="logo">
-    <h1>Fiat 500 Token</h1>
-    <nav>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiat 500 Token</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="src/logo.png" alt="Fiat 500 Token Logo" id="logo">
+        <h1>Fiat 500 Token</h1>
+        <nav>
+            <ul>
+                <li><a href="#descrizione">Descrizione</a></li>
+                <li><a href="#caratteristiche">Caratteristiche</a></li>
+                <li><a href="#acquisto">Acquisto</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#whitepaper">Whitepaper</a></li>
+                <li><a href="#contatti">Contatti</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="banner">
+            <img src="src/Screenshot_2025-01-26-23-42-17-42_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Token Fiat 500">
+            <h2>Scopri il Token Ufficiale della Fiat 500</h2>
+            <p>Un oggetto da collezione unico per gli appassionati!</p>
+            <a href="#acquisto" class="cta-button">Acquista Ora</a>
+        </section>
+
+        <section id="descrizione">
+            <h2>Descrizione</h2>
+            <p>
+                Il token della Fiat 500 è un oggetto da collezione che celebra l'iconica vettura. Realizzato con materiali di alta qualità, è ideale per gli appassionati e i collezionisti. Ogni token è numerato e certificato.
+            </p>
+            <p>
+                Il token è sviluppato sulla blockchain di Solana, garantendo transazioni veloci e a basso costo. Scopri di più sulla tecnologia e sui vantaggi di utilizzare Solana.
+            </p>
+        </section>
+
+        <section id="caratteristiche">
+            <h2>Caratteristiche</h2>
+            <ul>
+                <li><strong>Materiale:</strong> Metallo prezioso (es. ottone)</li>
+                <li><strong>Dimensioni:</strong> Diametro 30mm, spessore 3mm</li>
+                <li><strong>Numerazione:</strong> Ogni token ha un numero seriale unico</li>
+                <li><strong>Certificazione:</strong> Certificato di autenticità incluso</li>
+                <li><strong>Blockchain:</strong> Solana</li>
+                <li><strong>Smart Contract:</strong> Verificabile su Solscan</li>
+                <li><strong>Tokenomics:</strong> Supply limitata, deflazionaria</li>
+            </ul>
+        </section>
+
+        <section id="acquisto">
+            <h2>Acquista Ora</h2>
+            <p>
+                Il token è disponibile in edizione limitata. Scopri di più sul prezzo e le modalità di acquisto.
+            </p>
+            <button id="acquistaBtn">Aggiungi al Carrello</button>
+            <button id="rimuoviBtn">Rimuovi dal Carrello</button>
+            <button id="checkoutBtn">Procedi al Checkout</button>
+            <div id="carrello">Carrello: <span id="contatoreCarrello">0</span></div>
+            <div id="notifica" class="notifica">
+                <span id="testoNotifica">Articolo aggiunto al carrello!</span>
+            </div>
+        </section>
+
+        <section id="community">
+            <h2>Community</h2>
+            <p>
+                Unisciti alla nostra community per rimanere aggiornato e partecipare alle discussioni.
+            </p>
+            <ul>
+                <li><a href="https://t.me/fiat500token" target="_blank">Telegram</a></li>
+                <li><a href="https://discord.gg/fiat500token" target="_blank">Discord</a></li>
+                <li><a href="https://twitter.com/fiat500token" target="_blank">Twitter</a></li>
+            </ul>
+        </section>
+
+        <section id="roadmap">
+            <h2>Roadmap</h2>
+            <ul>
+                <li><strong>Q1 2025:</strong> Lancio del token e vendita iniziale.</li>
+                <li><strong>Q2 2025:</strong> Integrazione con marketplace NFT.</li>
+                <li><strong>Q3 2025:</strong> Sviluppo di una app mobile per la gestione del token.</li>
+                <li><strong>Q4 2025:</strong> Espansione della community e nuovi partnership.</li>
+            </ul>
+        </section>
+
+        <section id="whitepaper">
+            <h2>Whitepaper</h2>
+            <p>
+                Scarica il nostro whitepaper per conoscere tutti i dettagli tecnici e gli obiettivi del progetto.
+            </p>
+            <a href="whitepaper.pdf" download class="cta-button">Scarica Whitepaper</a>
+        </section>
+
+        <section id="contatti">
+            <h2>Contatti</h2>
+            <form id="formContatto">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="messaggio">Messaggio:</label>
+                <textarea id="messaggio" name="messaggio" required></textarea>
+                
+                <button type="submit">Invia</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Fiat 500 Token</p>
         <ul>
-            <li><a href="#descrizione">Descrizione</a></li>
-            <li><a href="#caratteristiche">Caratteristiche</a></li>
-            <li><a href="#acquisto">Acquisto</a></li>
-            <li><a href="#community">Community</a></li>
-            <li><a href="#roadmap">Roadmap</a></li>
-            <li><a href="#whitepaper">Whitepaper</a></li>
-            <li><a href="#contatti">Contatti</a></li>
+            <li><a href="#termini">Termini e Condizioni</a></li>
+            <li><a href="#privacy">Privacy Policy</a></li>
+            <li><a href="#cookie">Cookie Policy</a></li>
         </ul>
-    </nav>
-</header>
-<section id="banner">
-    <img src="src/Screenshot_2025-01-26-23-42-17-42_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Token Fiat 500">
-    <h2>Scopri il Token Ufficiale della Fiat 500</h2>
-    <p>Un oggetto da collezione unico per gli appassionati!</p>
-    <a href="#acquisto" class="cta-button">Acquista Ora</a>
-</section>
-<section id="descrizione">
-    <h2>Descrizione</h2>
-    <p>
-        Il token della Fiat 500 è un oggetto da collezione che celebra l'iconica vettura. Realizzato con materiali di alta qualità, è ideale per gli appassionati e i collezionisti. Ogni token è numerato e certificato.
-    </p>
-    <p>
-        Il token è sviluppato sulla blockchain di Solana, garantendo transazioni veloci e a basso costo. Scopri di più sulla tecnologia e sui vantaggi di utilizzare Solana.
-    </p>
-</section>
-<section id="caratteristiche">
-    <h2>Caratteristiche</h2>
-    <ul>
-        <li><strong>Materiale:</strong> Metallo prezioso (es. ottone)</li>
-        <li><strong>Dimensioni:</strong> Diametro 30mm, spessore 3mm</li>
-        <li><strong>Numerazione:</strong> Ogni token ha un numero seriale unico</li>
-        <li><strong>Certificazione:</strong> Certificato di autenticità incluso</li>
-        <li><strong>Blockchain:</strong> Solana</li>
-        <li><strong>Smart Contract:</strong> Verificabile su Solscan</li>
-        <li><strong>Tokenomics:</strong> Supply limitata, deflazionaria</li>
-    </ul>
-</section>
-<section id="acquisto">
-    <h2>Acquista Ora</h2>
-    <p>
-        Il token è disponibile in edizione limitata. Scopri di più sul prezzo e le modalità di acquisto.
-    </p>
-    <button id="acquistaBtn">Aggiungi al Carrello</button>
-    <div id="messaggioAcquisto" style="display: none;">
-        Articolo aggiunto al carrello!
-    </div>
-    <p>
-        Per acquistare il token, segui questi passaggi:
-    </p>
-    <ol>
-        <li>Configura un wallet Solana (ad esempio, Phantom Wallet).</li>
-        <li>Acquista SOL su un exchange supportato.</li>
-        <li>Trasferisci SOL al tuo wallet.</li>
-        <li>Acquista il Fiat 500 Token tramite il nostro sito.</li>
-    </ol>
-</section>
-<section id="community">
-    <h2>Community</h2>
-    <p>
-        Unisciti alla nostra community per rimanere aggiornato e partecipare alle discussioni.
-    </p>
-    <ul>
-        <li><a href="https://t.me/fiat500token" target="_blank">Telegram</a></li>
-        <li><a href="https://discord.gg/fiat500token" target="_blank">Discord</a></li>
-        <li><a href="https://twitter.com/fiat500token" target="_blank">Twitter</a></li>
-    </ul>
-</section>
-<section id="roadmap">
-    <h2>Roadmap</h2>
-    <ul>
-        <li><strong>Q1 2025:</strong> Lancio del token e vendita iniziale.</li>
-        <li><strong>Q2 2025:</strong> Integrazione con marketplace NFT.</li>
-        <li><strong>Q3 2025:</strong> Sviluppo di una app mobile per la gestione del token.</li>
-        <li><strong>Q4 2025:</strong> Espansione della community e nuovi partnership.</li>
-    </ul>
-</section>
+    </footer>
 
-<section id="whitepaper">
-    <h2>Whitepaper</h2>
-    <p>
-        Scarica il nostro whitepaper per conoscere tutti i dettagli tecnici e gli obiettivi del progetto.
-    </p>
-    <a href="whitepaper.pdf" download class="cta-button">Scarica Whitepaper</a>
-</section>
-<section id="contatti">
-    <h2>Contatti</h2>
-    <form id="formContatto">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required>
-        
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        
-        <label for="messaggio">Messaggio:</label>
-        <textarea id="messaggio" name="messaggio" required></textarea>
-        
-        <button type="submit">Invia</button>
-    </form>
-</section>
-
-<footer>
-    <p>© 2025 Fiat 500 Token</p>
-    <ul>
-        <li><a href="#termini">Termini e Condizioni</a></li>
-        <li><a href="#privacy">Privacy Policy</a></li>
-        <li><a href="#cookie">Cookie Policy</a></li>
-    </ul>
-</footer>
+    <script src="script.js"></script>
+</body>
+</html>
