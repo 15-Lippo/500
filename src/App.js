@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { Connection, PublicKey, Transaction } from '@solana/web3.js';
 import { Token, TOKEN_PROGRAM_ID } from '@solana/spl-token';
+import ImageSlider from './ImageSlider';
 
 function App() {
     const { connected, publicKey, sendTransaction } = useWallet();
     const [statusMessage, setStatusMessage] = useState('');
-    const [walletAddress, setWalletAddress] = useState('');
 
     const transferSPLToken = async () => {
         if (!connected || !publicKey) {
@@ -16,7 +16,7 @@ function App() {
 
         setStatusMessage('Transazione in corso...');
 
-        const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
+        const connection = new Connection("https://api.devnet.solana.com", 'confirmed');
 
         try {
             const balance = await connection.getBalance(publicKey);
@@ -30,9 +30,9 @@ function App() {
             return;
         }
 
-        const tokenMintAddress = new PublicKey('YourTokenMintAddressHere');
-        const recipientAddress = new PublicKey('RecipientPublicKeyHere');
-        const amount = 100 * (10 ** 9);
+        const tokenMintAddress = new PublicKey('YourTokenMintAddressHere'); // Sostituisci con il tuo token mint address
+        const recipientAddress = new PublicKey('RecipientPublicKeyHere'); // Sostituisci con il recipient address
+        const amount = 100 * (10 ** 9); // 100 token (supponendo 9 decimali)
 
         const transaction = new Transaction().add(
             Token.createTransferInstruction(
@@ -87,12 +87,9 @@ function App() {
                 </div>
             </section>
 
-            <section className="cta-section">
-                <h2>Non perdere l'opportunità</h2>
-                <p>Unisciti alla rivoluzione finanziaria. Acquista 500 Crypto oggi stesso!</p>
-                <button className="cta-button" onClick={transferSPLToken} disabled={!connected}>
-                    Inizia Ora
-                </button>
+            <section>
+                <h2>Galleria</h2>
+                <ImageSlider />
             </section>
 
             <footer>
