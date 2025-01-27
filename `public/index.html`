@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 Crypto - Il Futuro della Finanza</title>
+    <meta name="description" content="Investi in 500 Crypto, la moneta digitale del futuro. Sicura, veloce e rivoluzionaria.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/styles.css">
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>
