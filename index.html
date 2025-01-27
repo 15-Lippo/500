@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fiat 500 Token</title>
+    <title>500 Token</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <img src="src/logo.png" alt="Fiat 500 Token Logo" id="logo">
-        <h1>Fiat 500 Token</h1>
+        <img src="src/logo.png" alt="500 Token Logo" id="logo">
+        <h1>500 Token</h1>
         <nav>
             <ul>
                 <li><a href="#descrizione">Descrizione</a></li>
@@ -25,8 +26,8 @@
 
     <main>
         <section id="banner">
-            <img src="src/Screenshot_2025-01-26-23-42-17-42_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Token Fiat 500">
-            <h2>Scopri il Token Ufficiale della Fiat 500</h2>
+            <img src="src/Screenshot_2025-01-26-23-42-17-42_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Token 500">
+            <h2>Scopri il Token Ufficiale della 500</h2>
             <p>Un oggetto da collezione unico per gli appassionati!</p>
             <a href="#acquisto" class="cta-button">Acquista Ora</a>
         </section>
@@ -34,7 +35,7 @@
         <section id="descrizione">
             <h2>Descrizione</h2>
             <p>
-                Il token della Fiat 500 è un oggetto da collezione che celebra l'iconica vettura. Realizzato con materiali di alta qualità, è ideale per gli appassionati e i collezionisti. Ogni token è numerato e certificato.
+                Il token della 500 è un oggetto da collezione che celebra l'iconica vettura. Realizzato con materiali di alta qualità, è ideale per gli appassionati e i collezionisti. Ogni token è numerato e certificato.
             </p>
             <p>
                 Il token è sviluppato sulla blockchain di Solana, garantendo transazioni veloci e a basso costo. Scopri di più sulla tecnologia e sui vantaggi di utilizzare Solana.
@@ -57,12 +58,11 @@
         <section id="acquisto">
             <h2>Acquista Ora</h2>
             <p>
-                Il token è disponibile in edizione limitata. Scopri di più sul prezzo e le modalità di acquisto.
+                Il token è disponibile in edizione limitata. Collega il tuo wallet Phantom per acquistare.
             </p>
-            <button id="acquistaBtn">Aggiungi al Carrello</button>
-            <button id="rimuoviBtn">Rimuovi dal Carrello</button>
-            <button id="checkoutBtn">Procedi al Checkout</button>
-            <div id="carrello">Carrello: <span id="contatoreCarrello">0</span></div>
+            <button id="connectWalletBtn">Collega Wallet Phantom</button>
+            <button id="acquistaBtn" disabled>Acquista Token</button>
+            <div id="walletStatus"></div>
             <div id="notifica" class="notifica">
                 <span id="testoNotifica">Articolo aggiunto al carrello!</span>
             </div>
@@ -74,9 +74,9 @@
                 Unisciti alla nostra community per rimanere aggiornato e partecipare alle discussioni.
             </p>
             <ul>
-                <li><a href="https://t.me/fiat500token" target="_blank">Telegram</a></li>
-                <li><a href="https://discord.gg/fiat500token" target="_blank">Discord</a></li>
-                <li><a href="https://twitter.com/fiat500token" target="_blank">Twitter</a></li>
+                <li><a href="https://t.me/500token" target="_blank">Telegram</a></li>
+                <li><a href="https://discord.gg/500token" target="_blank">Discord</a></li>
+                <li><a href="https://twitter.com/500token" target="_blank">Twitter</a></li>
             </ul>
         </section>
 
@@ -116,7 +116,7 @@
     </main>
 
     <footer>
-        <p>© 2025 Fiat 500 Token</p>
+        <p>© 2025 500 Token</p>
         <ul>
             <li><a href="#termini">Termini e Condizioni</a></li>
             <li><a href="#privacy">Privacy Policy</a></li>
@@ -124,6 +124,7 @@
         </ul>
     </footer>
 
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
