@@ -72,6 +72,10 @@
             text-align: center;
             padding: 20px;
         }
+        #statusMessage {
+            margin-top: 20px;
+            font-size: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -81,7 +85,7 @@
         <h1>500 Crypto</h1>
         <p>Il futuro della finanza è qui. Investi oggi per un domani migliore.</p>
         <button class="cta-button" id="buyButton">Acquista Ora</button>
-        <div id="statusMessage" style="margin-top: 20px; color: red;"></div>
+        <div id="statusMessage"></div>
     </header>
 
     <!-- Sezione Caratteristiche -->
@@ -118,78 +122,102 @@
         <p>© 2023 500 Crypto. Tutti i diritti riservati.</p>
     </footer>
 
+    <!-- Script per Solana e Phantom Wallet -->
     <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
     <script src="https://unpkg.com/@solana/spl-token@latest/lib/index.iife.js"></script>
     <script>
-        // Funzione per connettere il wallet Phantom
-        async function connectWallet() {
-           if (window.solana) { // Verifica se window.solana esiste prima di accedere a isPhantom
-             if (window.solana.isPhantom) { // Verifica se è Phantom
-                try {
-                    const response = await window.solana.connect();
-                    const publicKey = response.publicKey.toString();
-                    document.getElementById('statusMessage').textContent = `Wallet connesso: ${publicKey}`;
-                    return publicKey;
-                } catch (error) {
-                    console.error("Errore durante la connessione al wallet:", error);
-                    document.getElementById('statusMessage').textContent = "Errore durante la connessione al wallet.";
-                }
-             } else {
-                document.getElementById('statusMessage').textContent = "Il wallet non è Phantom.";
-                }
-           } else {
-              document.getElementById('statusMessage').textContent = "Phantom Wallet non è installato.";
-               alert("Phantom Wallet non è installato. Per favore, installa Phantom Wallet per continuare.");
-           }
-           return null;
-        }
-
-        // Funzione per trasferire token SPL
-        async function transferSPLToken() {
-            const publicKey = await connectWallet();
-            if (!publicKey) return;
-            
-             // Configurazione della connessione a Solana
-            const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'), 'confirmed');
-
-            // Indirizzo del token SPL (SOSTITUISCI CON IL TUO INDIRIZZO)
-            const tokenMintAddress = new solanaWeb3.PublicKey('YourTokenMintAddressHere');
-
-            // Indirizzo del wallet del destinatario (SOSTITUISCI CON L'INDIRIZZO DEL TUO WALLET)
-            const recipientAddress = new solanaWeb3.PublicKey('RecipientPublicKeyHere');
-
-            // Quantità di token da trasferire (es. 100 token)
-            const amount = 100 * (10 ** 9); // Supponendo 9 decimali
-
-            // Creazione della transazione
-            const transaction = new solanaWeb3.Transaction().add(
-                splToken.Token.createTransferInstruction(
-                    splToken.TOKEN_PROGRAM_ID,
-                    new solanaWeb3.PublicKey(publicKey), // Indirizzo del mittente
-                    recipientAddress, // Indirizzo del destinatario
-                    new solanaWeb3.PublicKey(publicKey), // Indirizzo del proprietario
-                    [],
-                    amount
-                )
-            );
-
-            // Firma e invio della transazione
-            try {
-                const { signature } = await window.solana.signAndSendTransaction(transaction);
-                document.getElementById('statusMessage').textContent = `Transazione inviata! Signature: ${signature}`;
-            } catch (error) {
-                console.error("Errore durante l'invio della transazione:", error);
-                document.getElementById('statusMessage').textContent = "Errore durante l'invio della transazione.";
-            }
-        }
-
-        // Collega il pulsante alla funzione transferSPLToken
         document.addEventListener('DOMContentLoaded', () => {
             const buyButton = document.getElementById('buyButton');
-            buyButton.addEventListener('click', transferSPLToken);
-
             const buyButton2 = document.getElementById('buyButton2');
-            buyButton2.addEventListener('click', transferSPLToken);
+            const statusMessage = document.getElementById('statusMessage');
+
+            // Funzione per connettere il wallet Phantom
+            async function connectWallet() {
+                if (window.solana && window.solana.isPhantom) {
+                    try {
+                        const response = await window.solana.connect();
+                        const publicKey = response.publicKey.toString();
+                        statusMessage.textContent = `Wallet connesso: ${publicKey}`;
+                        statusMessage.style.color = 'green';
+                        return publicKey;
+                    } catch (error) {
+                        console.error("Errore durante la connessione al wallet:", error);
+                        statusMessage.textContent = "Errore durante la connessione al wallet: " + error.message;
+                        statusMessage.style.color = 'red';
+                        return null;
+                    }
+                } else {
+                    statusMessage.textContent = "Phantom Wallet non è installato. Per favore, installa Phantom Wallet per continuare.";
+                    statusMessage.style.color = 'red';
+                    if (buyButton) buyButton.style.display = 'none';
+                    if (buyButton2) buyButton2.style.display = 'none';
+                    return null;
+                }
+            }
+
+            // Funzione per trasferire token SPL
+            async function transferSPLToken() {
+                const publicKey = await connectWallet();
+                if (!publicKey) return;
+
+                // Configurazione della connessione a Solana
+                const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'), 'confirmed');
+
+                // Verifica il saldo SOL del wallet
+                try {
+                    const balance = await connection.getBalance(new solanaWeb3.PublicKey(publicKey));
+                    if (balance < 5000) { // 5000 lamports è un valore di esempio per le fee
+                        statusMessage.textContent = "Saldo SOL insufficiente per coprire le fee di transazione.";
+                        statusMessage.style.color = 'red';
+                        return;
+                    }
+                } catch (error) {
+                    console.error("Errore durante il controllo del saldo SOL:", error);
+                    statusMessage.textContent = "Errore durante il controllo del saldo SOL.";
+                    statusMessage.style.color = 'red';
+                    return;
+                }
+
+                // Indirizzo del token SPL (sostituisci con il tuo token mint address)
+                const tokenMintAddress = new solanaWeb3.PublicKey('YourTokenMintAddressHere');
+
+                // Indirizzo del wallet del destinatario (sostituisci con il public key del destinatario)
+                const recipientAddress = new solanaWeb3.PublicKey('RecipientPublicKeyHere');
+
+                // Quantità di token da trasferire (es. 100 token, supponendo 9 decimali)
+                const amount = 100 * (10 ** 9);
+
+                // Creazione della transazione
+                const transaction = new solanaWeb3.Transaction().add(
+                    splToken.Token.createTransferInstruction(
+                        splToken.TOKEN_PROGRAM_ID,
+                        new solanaWeb3.PublicKey(publicKey), // Indirizzo del mittente
+                        recipientAddress, // Indirizzo del destinatario
+                        new solanaWeb3.PublicKey(publicKey), // Indirizzo del proprietario
+                        [],
+                        amount
+                    )
+                );
+
+                // Firma e invio della transazione
+                try {
+                    const { signature } = await window.solana.signAndSendTransaction(transaction);
+                    statusMessage.textContent = `Transazione inviata! Signature: ${signature}`;
+                    statusMessage.style.color = 'green';
+                } catch (error) {
+                    console.error("Errore durante l'invio della transazione:", error);
+                    statusMessage.textContent = "Errore durante l'invio della transazione: " + error.message;
+                    statusMessage.style.color = 'red';
+                }
+            }
+
+            // Collega i pulsanti alla funzione transferSPLToken
+            if (buyButton && buyButton2) {
+                buyButton.addEventListener('click', transferSPLToken);
+                buyButton2.addEventListener('click', transferSPLToken);
+            } else {
+                console.error("Pulsanti non trovati nel DOM.");
+            }
         });
     </script>
 </body>
