@@ -4,6 +4,11 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
+    transition: background-color 0.3s ease; /* Transizione per il colore di sfondo */
+}
+
+body:hover {
+    background-color: #e0e0e0; /* Cambia colore di sfondo leggermente quando si passa sopra */
 }
 
 header {
@@ -11,10 +16,12 @@ header {
     color: #fff;
     padding: 1em 0;
     text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Ombra per un effetto di rilievo */
+    transition: transform 0.3s ease; /* Transizione per la trasformazione */
 }
 
-header h1 {
-    margin: 0;
+header:hover {
+    transform: translateY(-2px); /* Alza leggermente l'header al passaggio del mouse */
 }
 
 nav ul {
@@ -30,6 +37,27 @@ nav ul li {
 nav a {
     color: #fff;
     text-decoration: none;
+    position: relative; /* Per il pseudo elemento underline */
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #ddd; /* Cambia il colore al passaggio del mouse */
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color: #fff;
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%; /* Sottolineatura animata al passaggio del mouse */
 }
 
 main {
@@ -43,12 +71,33 @@ section {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Imposta l'opacità iniziale a 0 */
+    transform: translateY(20px); /* Imposta una traslazione iniziale */
+    animation: fadeIn 0.5s ease forwards; /* Aggiunge un'animazione */
+}
+
+/* Anima le sezioni all'apparizione */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 #banner img {
     max-width: 100%;
     height: auto;
     margin-bottom: 20px;
+    border-radius: 8px;
+    transition: transform 0.3s ease; /* Transizione per la trasformazione */
+}
+
+#banner img:hover {
+    transform: scale(1.05); /* Ingrandisce leggermente l'immagine al passaggio del mouse */
 }
 
 ul {
@@ -56,7 +105,7 @@ ul {
     padding: 0;
     text-align: left;
     margin: 15px auto;
-    max-width: 600px; /* Imposta una larghezza massima per una migliore leggibilità */
+    max-width: 600px;
 }
 
 ul li {
@@ -71,10 +120,14 @@ ul li {
     cursor: pointer;
     border-radius: 5px;
     margin-top: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Aggiunta della transizione */
 }
+
 #acquisto button:hover {
     background-color: #555;
+    transform: scale(1.05); /* Scala leggermente il pulsante al passaggio del mouse */
 }
+
 footer {
     background-color: #333;
     color: #fff;
@@ -83,4 +136,10 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* Ombra in alto */
+    transition: background-color 0.3s ease; /* Aggiunta transizione */
+}
+
+footer:hover {
+    background-color: #555; /* Cambia colore di sfondo al passaggio del mouse */
 }
