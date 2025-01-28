@@ -1,0 +1,25 @@
+import { createTransferCheckedInstruction } from '@solana/spl-token';
+
+// Sostituisci questa parte:
+const transaction = new Transaction().add(
+  Token.createTransferInstruction(
+    TOKEN_PROGRAM_ID,
+    publicKey,
+    recipientAddress,
+    publicKey,
+    [],
+    amount
+  )
+);
+
+// Con questa:
+const transaction = new Transaction().add(
+  createTransferCheckedInstruction(
+    publicKey, // Source account
+    tokenMintAddress, // Mint address
+    recipientAddress, // Destination account
+    publicKey, // Owner of the source account
+    amount, // Amount
+    9 // Decimals (supponendo 9 decimali)
+  )
+);
